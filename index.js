@@ -1,5 +1,5 @@
-let version = "1.0.5";
-var CryptoJS = require("./crypto-js");
+let version = "\x31\x2e\x30\x2e\x35";
+var P1 = require("\x2e\x2f\x63\x72\x79\x70\x74\x6f\x2d\x6a\x73");
 let addata = "";
 let systemInfo = "";
 let btnArea = "";
@@ -16,8 +16,6 @@ let __REQ_WIDTH__ = "";
 let __REQ_HEIGHT__ = "";
 let __WIDTH__ = "";
 let __HEIGHT__ = "";
-
-//class
 export default class Advertise {
   constructor({
     adType,
@@ -29,20 +27,19 @@ export default class Advertise {
     userinfo,
     hasUUid
   }) {
-    this.ctx = ctx;
-    this.unClick = true;
-    this.appid = appid;
-    this.loaded = false;
-    this.canvas = ctx.canvas;
-    this.adType = adType;
-    if (this.adType == "bottomBanner" || this.adType == "bubbleAd") {
-      this.clickad = this.click.bind(this);
-      this.clickupad = this.clickup.bind(this);
-      this.canvas.addEventListener("touchstart", this.clickad);
-      this.canvas.addEventListener("touchend", this.clickupad);
+    this["\x63\x74\x78"] = ctx;
+    this["\x75\x6e\x43\x6c\x69\x63\x6b"] = true;
+    this["\x61\x70\x70\x69\x64"] = appid;
+    this["\x6c\x6f\x61\x64\x65\x64"] = false;
+    this["\x63\x61\x6e\x76\x61\x73"] = ctx["\x63\x61\x6e\x76\x61\x73"];
+    this["\x61\x64\x54\x79\x70\x65"] = adType;
+    if (this["\x61\x64\x54\x79\x70\x65"] == "\x62\x6f\x74\x74\x6f\x6d\x42\x61\x6e\x6e\x65\x72" || this["\x61\x64\x54\x79\x70\x65"] == "\x62\x75\x62\x62\x6c\x65\x41\x64") {
+      this["\x63\x6c\x69\x63\x6b\x61\x64"] = this["\x63\x6c\x69\x63\x6b"]["\x62\x69\x6e\x64"](this);
+      this["\x63\x6c\x69\x63\x6b\x75\x70\x61\x64"] = this["\x63\x6c\x69\x63\x6b\x75\x70"]["\x62\x69\x6e\x64"](this);
+      this["\x63\x61\x6e\x76\x61\x73"]["\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72"]("\x74\x6f\x75\x63\x68\x73\x74\x61\x72\x74", this["\x63\x6c\x69\x63\x6b\x61\x64"]);
+      this["\x63\x61\x6e\x76\x61\x73"]["\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72"]("\x74\x6f\x75\x63\x68\x65\x6e\x64", this["\x63\x6c\x69\x63\x6b\x75\x70\x61\x64"]);
     }
-
-    this.advertise({
+    this["\x61\x64\x76\x65\x72\x74\x69\x73\x65"]({
       adType: adType,
       canvas: canvas,
       ctx: ctx,
@@ -53,128 +50,107 @@ export default class Advertise {
       hasUUid
     });
   }
-  //用户未设置uuid,则设置临时uuid
   setTempUuid() {
     let self = this;
     let uuid = "";
     for (let i = 0; i < 8; i++) {
-      let str = Math.floor(65536 * (1 + Math.random()))
-        .toString(16)
-        .substring(1);
+      let str = window["\x4d\x61\x74\x68"]["\x66\x6c\x6f\x6f\x72"](65536 * (1 + window["\x4d\x61\x74\x68"]["\x72\x61\x6e\x64\x6f\x6d"]()))["\x74\x6f\x53\x74\x72\x69\x6e\x67"](16)["\x73\x75\x62\x73\x74\x72\x69\x6e\x67"](1);
       uuid += str;
     }
-    if (wx.getStorageSync("aduuid")) {
-      // self.properties.adInfo.uuid = wx.getStorageSync("aduuid");
-    } else {
-      wx.setStorageSync("aduuid", uuid);
-      // self.properties.adInfo.uuid = uuid;
+    if (wx["\x67\x65\x74\x53\x74\x6f\x72\x61\x67\x65\x53\x79\x6e\x63"]("\x61\x64\x75\x75\x69\x64")) {} else {
+      wx["\x73\x65\x74\x53\x74\x6f\x72\x61\x67\x65\x53\x79\x6e\x63"]("\x61\x64\x75\x75\x69\x64", uuid);
     }
   }
-  // 获取网络类型
   getNetworkType() {
-    return new Promise(function (resolve, reject) {
-      wx.getNetworkType({
+    return new Promise(function (_utwjZBal2, zb3) {
+      wx["\x67\x65\x74\x4e\x65\x74\x77\x6f\x72\x6b\x54\x79\x70\x65"]({
         success(res) {
-          // 返回网络类型, 有效值：
-          // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
-          var networkType = 0;
-          switch (res.networkType) {
-            case "unknown":
-              networkType = 0;
+          var T4 = 0;
+          switch (res["\x6e\x65\x74\x77\x6f\x72\x6b\x54\x79\x70\x65"]) {
+            case "\x75\x6e\x6b\x6e\x6f\x77\x6e":
+              T4 = 0;
               break;
-            case "wifi":
-              networkType = 1;
+            case "\x77\x69\x66\x69":
+              T4 = 1;
               break;
-            case "2g":
-              networkType = 2;
+            case "\x32\x67":
+              T4 = 2;
               break;
-            case "3g":
-              networkType = 3;
+            case "\x33\x67":
+              T4 = 3;
               break;
-            case "4g":
-              networkType = 4;
+            case "\x34\x67":
+              T4 = 4;
               break;
           }
-          resolve(networkType);
+          _utwjZBal2(T4);
         }
       });
     });
   }
-
-  //获取设备类型
   getCellphoneSystemInfo() {
-    return new Promise(function (resolve, reject) {
-      wx.getSystemInfo({
-        success: function (res) {
-          systemInfo = res;
-          console.log(res);
-          resolve(res);
+    return new Promise(function (FZgYei5, MzZsW6) {
+      wx["\x67\x65\x74\x53\x79\x73\x74\x65\x6d\x49\x6e\x66\x6f"]({
+        success: function (PZujj7) {
+          systemInfo = PZujj7;
+          console["\x6c\x6f\x67"](PZujj7);
+          FZgYei5(PZujj7);
         }
       });
     });
   }
-
-  // 获取随机字符串
   randomString(len) {
     len = len || 32;
-    var $chars =
-      "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678"; /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
-    var maxPos = $chars.length;
-    var pwd = "";
-    for (var i = 0; i < len; i++) {
-      pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+    var un8chars = "\x41\x42\x43\x44\x45\x46\x47\x48\x4a\x4b\x4d\x4e\x50\x51\x52\x53\x54\x57\x58\x59\x5a\x61\x62\x63\x64\x65\x66\x68\x69\x6a\x6b\x6d\x6e\x70\x72\x73\x74\x77\x78\x79\x7a\x32\x33\x34\x35\x36\x37\x38";
+    var ccTWUsS9 = un8chars["\x6c\x65\x6e\x67\x74\x68"];
+    var e10 = "";
+    for (var tjQL11 = 0; tjQL11 < len; tjQL11++) {
+      e10 += un8chars["\x63\x68\x61\x72\x41\x74"](window["\x4d\x61\x74\x68"]["\x66\x6c\x6f\x6f\x72"](window["\x4d\x61\x74\x68"]["\x72\x61\x6e\x64\x6f\x6d"]() * ccTWUsS9));
     }
-    return pwd;
+    return e10;
   }
-  // 加密
   encode(str) {
-    let key = CryptoJS.enc.Utf8.parse("Zyz#Wx1820&&2468");
-
-    var ciphertext = CryptoJS.AES.encrypt(str, key, {
+    let key = P1["\x65\x6e\x63"]["\x55\x74\x66\x38"]["\x70\x61\x72\x73\x65"]("\x5a\x79\x7a\x23\x57\x78\x31\x38\x32\x30\x26\x26\x32\x34\x36\x38");
+    var Hseav12 = P1["\x41\x45\x53"]["\x65\x6e\x63\x72\x79\x70\x74"](str, key, {
       iv: key,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
+      mode: P1["\x6d\x6f\x64\x65"]["\x43\x42\x43"],
+      padding: P1["\x70\x61\x64"]["\x50\x6b\x63\x73\x37"]
     });
-    return ciphertext.ciphertext.toString(CryptoJS.enc.Hex);
+    return Hseav12["\x63\x69\x70\x68\x65\x72\x74\x65\x78\x74"]["\x74\x6f\x53\x74\x72\x69\x6e\x67"](P1["\x65\x6e\x63"]["\x48\x65\x78"]);
   }
-
-  // 平台曝光
   im(params) {
-    var self = this;
-    let t = parseInt(Date.parse(new Date()) / 1000);
-    console.log(t);
-    let replaceStr = params.sign + "|" + t;
-    console.log(typeof replaceStr);
-    let encodeStr = self.encode(replaceStr);
-    let url = params.ims[0].replace("__EXT__", params.ext); //接口地址
-    url = url.replace("__SIGN__", encodeStr); //接口地址
-    wx.request({
-      url: url, //接口地址
+    var tEQ14 = this;
+    let t = window["\x70\x61\x72\x73\x65\x49\x6e\x74"](window["\x44\x61\x74\x65"]["\x70\x61\x72\x73\x65"](new window["\x44\x61\x74\x65"]()) / 1000);
+    console["\x6c\x6f\x67"](t);
+    let replaceStr = params["\x73\x69\x67\x6e"] + "\x7c" + t;
+    console["\x6c\x6f\x67"](typeof replaceStr);
+    let encodeStr = tEQ14["\x65\x6e\x63\x6f\x64\x65"](replaceStr);
+    let url = params["\x69\x6d\x73"][0]["\x72\x65\x70\x6c\x61\x63\x65"]("\x5f\x5f\x45\x58\x54\x5f\x5f", params["\x65\x78\x74"]);
+    url = url["\x72\x65\x70\x6c\x61\x63\x65"]("\x5f\x5f\x53\x49\x47\x4e\x5f\x5f", encodeStr);
+    wx["\x72\x65\x71\x75\x65\x73\x74"]({
+      url: url,
       header: {
-        "content-type": "application/json", // 默认值
-        "x-api-version": "1.0.0"
+        "\x63\x6f\x6e\x74\x65\x6e\x74\x2d\x74\x79\x70\x65": "\x61\x70\x70\x6c\x69\x63\x61\x74\x69\x6f\x6e\x2f\x6a\x73\x6f\x6e",
+        "\x78\x2d\x61\x70\x69\x2d\x76\x65\x72\x73\x69\x6f\x6e": "\x31\x2e\x30\x2e\x30"
       },
-      success: function (res) {
-        if (res.statusCode === 200) {
-          console.log(res);
+      success: function (SlqQuoS15) {
+        if (SlqQuoS15["\x73\x74\x61\x74\x75\x73\x43\x6f\x64\x65"] === 200) {
+          console["\x6c\x6f\x67"](SlqQuoS15);
         }
       },
-      fail: function (err) {
-        console.log("im接口加载失败", err);
+      fail: function (sT16) {
+        console["\x6c\x6f\x67"]("\x69\x6d\u63a5\u53e3\u52a0\u8f7d\u5931\u8d25", sT16);
       }
     });
   }
-  // 平台点击
   ck(params) {
-    var self = this;
-
-    // 获取广告图片
-    let t = parseInt(Date.parse(new Date()) / 1000);
-    let replaceStr = params.sign + "|" + t;
-    let encodeStr = self.encode(replaceStr);
-    let url = params.cks[0].replace("__EXT__", params.ext); //接口地址
-    url = url.replace("__SIGN__", encodeStr); //接口地址
-    var requestParams = {
+    var PuEPo17 = this;
+    let t = window["\x70\x61\x72\x73\x65\x49\x6e\x74"](window["\x44\x61\x74\x65"]["\x70\x61\x72\x73\x65"](new window["\x44\x61\x74\x65"]()) / 1000);
+    let replaceStr = params["\x73\x69\x67\x6e"] + "\x7c" + t;
+    let encodeStr = PuEPo17["\x65\x6e\x63\x6f\x64\x65"](replaceStr);
+    let url = params["\x63\x6b\x73"][0]["\x72\x65\x70\x6c\x61\x63\x65"]("\x5f\x5f\x45\x58\x54\x5f\x5f", params["\x65\x78\x74"]);
+    url = url["\x72\x65\x70\x6c\x61\x63\x65"]("\x5f\x5f\x53\x49\x47\x4e\x5f\x5f", encodeStr);
+    var aR18 = {
       __DOWN_X__: __DOWN_X__,
       __DOWN_Y__: __DOWN_Y__,
       __UP_X__: __UP_X__,
@@ -184,71 +160,58 @@ export default class Advertise {
       __HEIGHT__: __HEIGHT__,
       __WIDTH__: __WIDTH__
     };
-    wx.request({
-      url: url, //接口地址
-      data: requestParams,
+    wx["\x72\x65\x71\x75\x65\x73\x74"]({
+      url: url,
+      data: aR18,
       header: {
-        "content-type": "application/json" // 默认值
+        "\x63\x6f\x6e\x74\x65\x6e\x74\x2d\x74\x79\x70\x65": "\x61\x70\x70\x6c\x69\x63\x61\x74\x69\x6f\x6e\x2f\x6a\x73\x6f\x6e"
       },
-      success: function (res) {
-        if (res.statusCode === 200) {
-          // console.log(res);
-        }
+      success: function (ennEwh19) {
+        if (ennEwh19["\x73\x74\x61\x74\x75\x73\x43\x6f\x64\x65"] === 200) {}
       },
-      fail: function (err) {
-        console.log("ck接口加载失败", err);
+      fail: function (CHInqAK20) {
+        console["\x6c\x6f\x67"]("\x63\x6b\u63a5\u53e3\u52a0\u8f7d\u5931\u8d25", CHInqAK20);
       }
     });
   }
   clickup(e) {
-    var self = this;
-    console.log(e);
-    e.preventDefault();
-    let x = e.changedTouches[0].clientX;
-    let y = e.changedTouches[0].clientY;
+    var aSG_21 = this;
+    console["\x6c\x6f\x67"](e);
+    e["\x70\x72\x65\x76\x65\x6e\x74\x44\x65\x66\x61\x75\x6c\x74"]();
+    let x = e["\x63\x68\x61\x6e\x67\x65\x64\x54\x6f\x75\x63\x68\x65\x73"][0]["\x63\x6c\x69\x65\x6e\x74\x58"];
+    let y = e["\x63\x68\x61\x6e\x67\x65\x64\x54\x6f\x75\x63\x68\x65\x73"][0]["\x63\x6c\x69\x65\x6e\x74\x59"];
     __UP_X__ = x;
     __UP_Y__ = y;
-    console.log(x, y);
-
-    if (x > btnArea.left && y >= btnArea.top) {
-      console.log(addata, "--------------------=============");
-      wx.navigateToMiniProgram({
-        appId: this.addata.link,
-        path: this.addata.path,
-        complete: function (res) {}
+    console["\x6c\x6f\x67"](x, y);
+    if (x > btnArea["\x6c\x65\x66\x74"] && y >= btnArea["\x74\x6f\x70"]) {
+      console["\x6c\x6f\x67"](addata, "\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d");
+      wx["\x6e\x61\x76\x69\x67\x61\x74\x65\x54\x6f\x4d\x69\x6e\x69\x50\x72\x6f\x67\x72\x61\x6d"]({
+        appId: this["\x61\x64\x64\x61\x74\x61"]["\x6c\x69\x6e\x6b"],
+        path: this["\x61\x64\x64\x61\x74\x61"]["\x70\x61\x74\x68"],
+        complete: function (vWmAsjuQ22) {}
       });
-      self.ck(self.addata);
+      aSG_21["\x63\x6b"](aSG_21["\x61\x64\x64\x61\x74\x61"]);
       return;
     }
-    if (
-      x > bubbleArea.left &&
-      y >= bubbleArea.top &&
-      x < bubbleArea.right &&
-      y <= bubbleArea.bottom
-    ) {
-      wx.navigateToMiniProgram({
-        appId: this.addata.link,
-        path: this.addata.path,
+    if (x > bubbleArea["\x6c\x65\x66\x74"] && y >= bubbleArea["\x74\x6f\x70"] && x < bubbleArea["\x72\x69\x67\x68\x74"] && y <= bubbleArea["\x62\x6f\x74\x74\x6f\x6d"]) {
+      wx["\x6e\x61\x76\x69\x67\x61\x74\x65\x54\x6f\x4d\x69\x6e\x69\x50\x72\x6f\x67\x72\x61\x6d"]({
+        appId: this["\x61\x64\x64\x61\x74\x61"]["\x6c\x69\x6e\x6b"],
+        path: this["\x61\x64\x64\x61\x74\x61"]["\x70\x61\x74\x68"],
         complete: function (res) {}
       });
-      self.ck(self.addata);
+      aSG_21["\x63\x6b"](aSG_21["\x61\x64\x64\x61\x74\x61"]);
       return;
     }
   }
-  //点击
-
   click(e) {
-    var self = this;
-
-    e.preventDefault();
-
-    let x = e.touches[0].clientX;
-    let y = e.touches[0].clientY;
+    var PZ23 = this;
+    e["\x70\x72\x65\x76\x65\x6e\x74\x44\x65\x66\x61\x75\x6c\x74"]();
+    let x = e["\x74\x6f\x75\x63\x68\x65\x73"][0]["\x63\x6c\x69\x65\x6e\x74\x58"];
+    let y = e["\x74\x6f\x75\x63\x68\x65\x73"][0]["\x63\x6c\x69\x65\x6e\x74\x59"];
     __DOWN_X__ = x;
     __DOWN_Y__ = y;
-    console.log(x, y);
+    console["\x6c\x6f\x67"](x, y);
   }
-
   advertise({
     adType,
     canvas,
@@ -260,32 +223,29 @@ export default class Advertise {
     userinfo,
     hasUUid
   }) {
-    var self = this;
-    var appid = appid;
-    // 判断openid是否必填,不必填随机32位字符串存入缓存作为uuid的值
+    var hMzq24 = this;
+    var t_wAaKn25 = t_wAaKn25;
     if (hasUUid === false) {
-      this.setTempUuid();
+      this["\x73\x65\x74\x54\x65\x6d\x70\x55\x75\x69\x64"]();
     }
-    // 获取网络类型,获取设备类型
-    Promise.all([this.getNetworkType(), this.getCellphoneSystemInfo()])
-      .then(results => {
-        this.results = results;
-        this.getContent({
-          canvas: canvas,
-          ctx: ctx,
-          results: results,
-          appid: appid,
-          slotid,
-          uuid,
-          wxopt,
-          hasUUid
-        }).then(res => {
-          console.log(adType, "ren-------------");
-        });
-      })
-      .then(function (res) {
-        console.log("test==========");
+    Promise["\x61\x6c\x6c"]([this["\x67\x65\x74\x4e\x65\x74\x77\x6f\x72\x6b\x54\x79\x70\x65"](), this["\x67\x65\x74\x43\x65\x6c\x6c\x70\x68\x6f\x6e\x65\x53\x79\x73\x74\x65\x6d\x49\x6e\x66\x6f"]()])["\x74\x68\x65\x6e"](results => {
+      this["\x72\x65\x73\x75\x6c\x74\x73"] = results;
+      this["\x67\x65\x74\x43\x6f\x6e\x74\x65\x6e\x74"]({
+        canvas: canvas,
+        ctx: ctx,
+        results: results,
+        t_wAaKn25: t_wAaKn25,
+        appid: appid,
+        slotid,
+        uuid,
+        wxopt,
+        hasUUid
+      })["\x74\x68\x65\x6e"](res => {
+        console["\x6c\x6f\x67"](adType, "\x72\x65\x6e\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d");
       });
+    })["\x74\x68\x65\x6e"](function (uCJUsR26) {
+      console["\x6c\x6f\x67"]("\x74\x65\x73\x74\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d");
+    });
   }
   getContent({
     adType,
@@ -298,72 +258,63 @@ export default class Advertise {
     userinfo
   }) {
     let self = this;
-    return new Promise(function (resolve, reject) {
-      // 请求参数
-      var requestParams = {
+    return new Promise(function (eU$27, k28) {
+      var lQ29 = {
         plugv: version,
         appid: appid,
         slotid: slotid,
         uuid: uuid,
         wxopt: wxopt,
-        userinfo: userinfo, //   // 请求ID
-        reqid: new Date().getTime() + self.randomString(17), //   // 设备型号
-        model: results[1].model, //   // 操作系统
-        os: results[1].system.indexOf("iOS") != -1 ?
-          1 : results[1].system.indexOf("Android") != -1 ?
-          2 : 0, //   // 操作系统版本
-        osv: results[1].system, //   // 微信版本
-        wxv: results[1].version, //   // 小程序接口版本
-        wxpv: results[1].SDKVersion, //   // 网络类型
-        net: results[0].networkType
+        userinfo: userinfo,
+        reqid: new window["\x44\x61\x74\x65"]()["\x67\x65\x74\x54\x69\x6d\x65"]() + self["\x72\x61\x6e\x64\x6f\x6d\x53\x74\x72\x69\x6e\x67"](17),
+        model: results[1]["\x6d\x6f\x64\x65\x6c"],
+        os: results[1]["\x73\x79\x73\x74\x65\x6d"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x69\x4f\x53") != -1 ? 1 : results[1]["\x73\x79\x73\x74\x65\x6d"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x41\x6e\x64\x72\x6f\x69\x64") != -1 ? 2 : 0,
+        osv: results[1]["\x73\x79\x73\x74\x65\x6d"],
+        wxv: results[1]["\x76\x65\x72\x73\x69\x6f\x6e"],
+        wxpv: results[1]["\x53\x44\x4b\x56\x65\x72\x73\x69\x6f\x6e"],
+        net: results[0]["\x6e\x65\x74\x77\x6f\x72\x6b\x54\x79\x70\x65"]
       };
-      console.log(requestParams);
-
-      // // 获取广告图片
-      wx.request({
-        url: "https://api-sailfish.optaim.com/link", //接口地址
-        data: requestParams,
+      console["\x6c\x6f\x67"](lQ29);
+      wx["\x72\x65\x71\x75\x65\x73\x74"]({
+        url: "\x68\x74\x74\x70\x73\x3a\x2f\x2f\x61\x70\x69\x2d\x73\x61\x69\x6c\x66\x69\x73\x68\x2e\x6f\x70\x74\x61\x69\x6d\x2e\x63\x6f\x6d\x2f\x6c\x69\x6e\x6b",
+        data: lQ29,
         header: {
-          "content-type": "application/json", // 默认值
-          "x-api-version": "1.0.0"
+          "\x63\x6f\x6e\x74\x65\x6e\x74\x2d\x74\x79\x70\x65": "\x61\x70\x70\x6c\x69\x63\x61\x74\x69\x6f\x6e\x2f\x6a\x73\x6f\x6e",
+          "\x78\x2d\x61\x70\x69\x2d\x76\x65\x72\x73\x69\x6f\x6e": "\x31\x2e\x30\x2e\x30"
         },
-        method: "POST",
-        success: function (res) {
-          self.addata = res.data;
-          wx.downloadFile({
-            url: self.addata.icon.url,
+        method: "\x50\x4f\x53\x54",
+        success: function (WsB$t30) {
+          self["\x61\x64\x64\x61\x74\x61"] = WsB$t30["\x64\x61\x74\x61"];
+          wx["\x64\x6f\x77\x6e\x6c\x6f\x61\x64\x46\x69\x6c\x65"]({
+            url: self["\x61\x64\x64\x61\x74\x61"]["\x69\x63\x6f\x6e"]["\x75\x72\x6c"],
             success: function (e) {
-              console.log(e.tempFilePath);
-              adIcon = e.tempFilePath;
+              console["\x6c\x6f\x67"](e["\x74\x65\x6d\x70\x46\x69\x6c\x65\x50\x61\x74\x68"]);
+              adIcon = e["\x74\x65\x6d\x70\x46\x69\x6c\x65\x50\x61\x74\x68"];
             }
           });
-          wx.downloadFile({
-            url: self.addata.main.url,
-            success: function (e) {
-              console.log(e.tempFilePath);
-
-              adMain = e.tempFilePath;
-              self.loaded = true;
+          wx["\x64\x6f\x77\x6e\x6c\x6f\x61\x64\x46\x69\x6c\x65"]({
+            url: self["\x61\x64\x64\x61\x74\x61"]["\x6d\x61\x69\x6e"]["\x75\x72\x6c"],
+            success: function (abnz31) {
+              console["\x6c\x6f\x67"](abnz31["\x74\x65\x6d\x70\x46\x69\x6c\x65\x50\x61\x74\x68"]);
+              adMain = abnz31["\x74\x65\x6d\x70\x46\x69\x6c\x65\x50\x61\x74\x68"];
+              self["\x6c\x6f\x61\x64\x65\x64"] = true;
             }
           });
-
-          if (res.data) {
-            self.im(self.addata);
+          if (WsB$t30["\x64\x61\x74\x61"]) {
+            self["\x69\x6d"](self["\x61\x64\x64\x61\x74\x61"]);
           }
         },
-        fail: function (err) {
-          console.log("广告接口加载失败", err);
+        fail: function (A32) {
+          console["\x6c\x6f\x67"]("\u5e7f\u544a\u63a5\u53e3\u52a0\u8f7d\u5931\u8d25", A32);
         }
       });
     });
   }
-
   drawBottomBanner() {
-    console.log("banner-----------");
+    console["\x6c\x6f\x67"]("\x62\x61\x6e\x6e\x65\x72\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d\x2d");
     let self = this;
-    const screenWidth = this.results[1].windowWidth;
-    const screenHeight = this.results[1].windowHeight;
-
+    const screenWidth = this["\x72\x65\x73\x75\x6c\x74\x73"][1]["\x77\x69\x6e\x64\x6f\x77\x57\x69\x64\x74\x68"];
+    const screenHeight = this["\x72\x65\x73\x75\x6c\x74\x73"][1]["\x77\x69\x6e\x64\x6f\x77\x48\x65\x69\x67\x68\x74"];
     const imgWidth = screenWidth * 0.7;
     const imgHeight = screenWidth * 0.35;
     __REQ_HEIGHT__ = screenWidth;
@@ -376,52 +327,24 @@ export default class Advertise {
       right: screenWidth,
       bottom: screenHeight
     };
-    var image = wx.createImage();
-    image.src = adMain;
-    self.ctx.drawImage(image, 0, screenHeight - imgHeight, imgWidth, imgHeight);
-    self.ctx.fillStyle = "#FFFFFF";
-
-    self.ctx.fillRect(
-      screenWidth * 0.7,
-      screenHeight - imgHeight,
-      screenWidth * 0.3,
-      imgHeight
-    );
-    var logo = wx.createImage();
-    logo.src = adIcon;
-    self.ctx.drawImage(
-      logo,
-      screenWidth * 0.85 - 20,
-      screenHeight - imgHeight + 10,
-      40,
-      40
-    );
-    self.ctx.fillStyle = "#000";
-    self.ctx.font = "12px Arial";
-    self.ctx.fillText(
-      this.addata.title,
-      screenWidth * 0.85 - 30,
-      screenHeight - imgHeight * 0.4
-    );
-    self.ctx.beginPath();
-    self.ctx.strokeStyle = "#51c332";
-    self.ctx.fillStyle = "#51c332";
-    self.ctx.font = "20px Arial";
-    self.roundRect(
-      self.ctx,
-      screenWidth * 0.85 - 25,
-      screenHeight - imgHeight * 0.3,
-      60,
-      30,
-      5,
-      true
-    );
-    self.ctx.fillText(
-      "查看",
-      screenWidth * 0.85 - 17,
-      screenHeight - imgHeight * 0.25 + 16
-    );
-    this.clickad = this.click.bind(this);
+    var _A33 = wx["\x63\x72\x65\x61\x74\x65\x49\x6d\x61\x67\x65"]();
+    _A33["\x73\x72\x63"] = adMain;
+    self["\x63\x74\x78"]["\x64\x72\x61\x77\x49\x6d\x61\x67\x65"](_A33, 0, screenHeight - imgHeight, imgWidth, imgHeight);
+    self["\x63\x74\x78"]["\x66\x69\x6c\x6c\x53\x74\x79\x6c\x65"] = "\x23\x46\x46\x46\x46\x46\x46";
+    self["\x63\x74\x78"]["\x66\x69\x6c\x6c\x52\x65\x63\x74"](screenWidth * 0.7, screenHeight - imgHeight, screenWidth * 0.3, imgHeight);
+    var WK34 = wx["\x63\x72\x65\x61\x74\x65\x49\x6d\x61\x67\x65"]();
+    WK34["\x73\x72\x63"] = adIcon;
+    self["\x63\x74\x78"]["\x64\x72\x61\x77\x49\x6d\x61\x67\x65"](WK34, screenWidth * 0.85 - 20, screenHeight - imgHeight + 10, 40, 40);
+    self["\x63\x74\x78"]["\x66\x69\x6c\x6c\x53\x74\x79\x6c\x65"] = "\x23\x30\x30\x30";
+    self["\x63\x74\x78"]["\x66\x6f\x6e\x74"] = "\x31\x32\x70\x78 \x41\x72\x69\x61\x6c";
+    self["\x63\x74\x78"]["\x66\x69\x6c\x6c\x54\x65\x78\x74"](this["\x61\x64\x64\x61\x74\x61"]["\x74\x69\x74\x6c\x65"], screenWidth * 0.85 - 30, screenHeight - imgHeight * 0.4);
+    self["\x63\x74\x78"]["\x62\x65\x67\x69\x6e\x50\x61\x74\x68"]();
+    self["\x63\x74\x78"]["\x73\x74\x72\x6f\x6b\x65\x53\x74\x79\x6c\x65"] = "\x23\x35\x31\x63\x33\x33\x32";
+    self["\x63\x74\x78"]["\x66\x69\x6c\x6c\x53\x74\x79\x6c\x65"] = "\x23\x35\x31\x63\x33\x33\x32";
+    self["\x63\x74\x78"]["\x66\x6f\x6e\x74"] = "\x32\x30\x70\x78 \x41\x72\x69\x61\x6c";
+    self["\x72\x6f\x75\x6e\x64\x52\x65\x63\x74"](self["\x63\x74\x78"], screenWidth * 0.85 - 25, screenHeight - imgHeight * 0.3, 60, 30, 5, true);
+    self["\x63\x74\x78"]["\x66\x69\x6c\x6c\x54\x65\x78\x74"]("\u67e5\u770b", screenWidth * 0.85 - 17, screenHeight - imgHeight * 0.25 + 16);
+    this["\x63\x6c\x69\x63\x6b\x61\x64"] = this["\x63\x6c\x69\x63\x6b"]["\x62\x69\x6e\x64"](this);
   }
   drawBubble(left, top, width, height) {
     let self = this;
@@ -435,28 +358,25 @@ export default class Advertise {
     __REQ_WIDTH__ = width;
     __WIDTH__ = width;
     __HEIGHT__ = height;
-    var image = wx.createImage();
-    image.src = "images/test.png";
-    self.ctx.drawImage(image, left, top, width, height);
-
-    this.clickad = this.click.bind(this);
+    var DbO35 = wx["\x63\x72\x65\x61\x74\x65\x49\x6d\x61\x67\x65"]();
+    DbO35["\x73\x72\x63"] = "\x69\x6d\x61\x67\x65\x73\x2f\x74\x65\x73\x74\x2e\x70\x6e\x67";
+    self["\x63\x74\x78"]["\x64\x72\x61\x77\x49\x6d\x61\x67\x65"](DbO35, left, top, width, height);
+    this["\x63\x6c\x69\x63\x6b\x61\x64"] = this["\x63\x6c\x69\x63\x6b"]["\x62\x69\x6e\x64"](this);
   }
-
   roundRect(ctx, x, y, width, height, r, isStroke) {
-    ctx.save();
-    ctx.beginPath(); // draw top and top right corner
-    ctx.moveTo(x + r, y);
-    ctx.arcTo(x + width, y, x + width, y + r, r); // draw right side and bottom right corner
-    ctx.arcTo(x + width, y + height, x + width - r, y + height, r); // draw bottom and bottom left corner
-    ctx.arcTo(x, y + height, x, y + height - r, r); // draw left and top left corner
-    ctx.arcTo(x, y, x + r, y, r);
+    ctx["\x73\x61\x76\x65"]();
+    ctx["\x62\x65\x67\x69\x6e\x50\x61\x74\x68"]();
+    ctx["\x6d\x6f\x76\x65\x54\x6f"](x + r, y);
+    ctx["\x61\x72\x63\x54\x6f"](x + width, y, x + width, y + r, r);
+    ctx["\x61\x72\x63\x54\x6f"](x + width, y + height, x + width - r, y + height, r);
+    ctx["\x61\x72\x63\x54\x6f"](x, y + height, x, y + height - r, r);
+    ctx["\x61\x72\x63\x54\x6f"](x, y, x + r, y, r);
     if (isStroke) {
-      ctx.stroke();
+      ctx["\x73\x74\x72\x6f\x6b\x65"]();
     } else {
-      ctx.fill();
+      ctx["\x66\x69\x6c\x6c"]();
     }
-    ctx.restore();
-
-    ctx.closePath();
+    ctx["\x72\x65\x73\x74\x6f\x72\x65"]();
+    ctx["\x63\x6c\x6f\x73\x65\x50\x61\x74\x68"]();
   }
 }
